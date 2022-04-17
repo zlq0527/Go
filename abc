@@ -1,0 +1,171 @@
+---
+title: Go语言学习
+date: 2022-04-16 00:00:28
+tags:
+categories:
+- [Go语言]
+
+---
+
+## Go语言学习笔记
+
+### 2022年04月13日
+
+第一个hello,world程序.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("hello,world")
+}
+
+```
+
+一个go文件只属于一个包,go文件的开头必须是 main包下 go 分为两种 ,一种是可执行的包,一种是工具包.工具包不能执行,但是拓展了主应用的功能
+
+#### go语言命名规则
+
+需要对外暴露的变量的名字首字母必须大写,不需要对外暴露的变量名首字母用小写
+
+包名尽量用小写,尽量不要和标准库的命名冲突,不要用大小写混合或下划线命名
+
+### 2022年04月14日
+
+简短定义变量 变量名:=值 这种方式的缺点是
+
+1. 无法定义数据类型
+2. 只能在函数内部
+3. 定义变量同时显示初始化
+
+var hp int hp:=10
+
+> 报错信息no new variables on left side of :=
+
+这样的话程序会报错 因为在第一行hp已经被声明过了
+
+conn, err := net.Dial("tcp", "127.0.0.1:8080")
+conn1, err := net.Dial("tcp", "127.0.0.1:8080")
+在多个简短变量声明和赋值中,至少有一个新的变量出现在左值中
+
+#### Swap a and b
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	a := 1
+	b := 2
+	var t int
+	t = a
+	a = b
+	b = t
+	fmt.Println(a)
+	fmt.Println(b)
+
+	//第二种方法
+	c := 1
+	d := 2
+	c, d = d, c
+	fmt.Println(c)
+	fmt.Println(d)
+
+}
+```
+
+
+### 2022年04月15日
+
+匿名变量
+匿名变量不占用空间,也不会分配内存,多个匿名变量之间没有任何影响
+定义一个函数getdata()
+
+```go
+package main
+
+import "fmt"
+
+func getdata() (int, int) {
+	return 10, 100
+}
+func main() {
+	a,_ :=getdata() //定义第二个接收值为匿名变量,在后续代码中不能被调用
+	_,b :=getdata() //定义第一个接收值为匿名变量
+	fmt.Println(a)
+	fmt.Println(b)
+}
+```
+
+变量的作用域
+局部变量 是在函数内声明的变量,
+局部变量只在函数内有效,函数调用结束后,变量就会被销毁.
+
+全局变量是在函数外部声明的
+Go语言函数内可以声明和全局变量相同名称的变量,在使用时,会优先使用函数内的局部变量.
+
+形式参数
+
+func test(形式参数)<返回值类型>{
+函数体
+}
+
+```go
+package main
+
+import "fmt"
+
+/**
+ * @ Author     ：zhaolengquan.
+ * @ Date       ：Created in 23:44 2022/4/15
+ * @ Description：
+ */
+func main() {
+	var a = 10
+	var b = 20
+	fmt.Printf("main()函数中a=%d\n", a)
+	fmt.Printf("main()函数中b=%d\n", b)
+	c := sum(a, b)
+	fmt.Printf("sum函数的返回值是%d", c)
+}
+func sum(a, b int) int {
+	fmt.Printf("sum函数中a=%d\n", a)
+	fmt.Printf("sum函数中b=%d\n", b)
+	return a+b
+}
+
+```
+
+###2022年04月17日22:43:14
+强制类型转换
+
+```go
+	var f1 float64 = 2.333
+	f2 := int(f1)
+	fmt.Println(f1, f2)
+	//输出结果 2.333 2
+```
+
+String转int
+```go
+	string1 := "112233"
+	atoi, err := strconv.Atoi(string1)
+	fmt.Println(string1, atoi, err)
+```
+
+判断字符串是否以某个字符开头或结尾
+```go
+    str := "hexo"
+	fmt.Println(strings.HasPrefix(str, "h"))//判断str是否以h字母开头
+	fmt.Println(strings.HasSuffix(str, "o"))//str是否以o字母结尾
+	输出结果 true true
+```
+
+
+
+
+
+
