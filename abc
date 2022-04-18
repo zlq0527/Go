@@ -1,8 +1,7 @@
 ---
-title: Go语言学习
-date: 2022-04-16 00:00:28
-tags:
+title: Go语言学习 date: 2022-04-16 00:00:28 tags:
 categories:
+
 - [Go语言]
 
 ---
@@ -77,12 +76,9 @@ func main() {
 }
 ```
 
-
 ### 2022年04月15日
 
-匿名变量
-匿名变量不占用空间,也不会分配内存,多个匿名变量之间没有任何影响
-定义一个函数getdata()
+匿名变量 匿名变量不占用空间,也不会分配内存,多个匿名变量之间没有任何影响 定义一个函数getdata()
 
 ```go
 package main
@@ -93,25 +89,20 @@ func getdata() (int, int) {
 	return 10, 100
 }
 func main() {
-	a,_ :=getdata() //定义第二个接收值为匿名变量,在后续代码中不能被调用
-	_,b :=getdata() //定义第一个接收值为匿名变量
+	a, _ := getdata() //定义第二个接收值为匿名变量,在后续代码中不能被调用
+	_, b := getdata() //定义第一个接收值为匿名变量
 	fmt.Println(a)
 	fmt.Println(b)
 }
 ```
 
-变量的作用域
-局部变量 是在函数内声明的变量,
-局部变量只在函数内有效,函数调用结束后,变量就会被销毁.
+变量的作用域 局部变量 是在函数内声明的变量, 局部变量只在函数内有效,函数调用结束后,变量就会被销毁.
 
-全局变量是在函数外部声明的
-Go语言函数内可以声明和全局变量相同名称的变量,在使用时,会优先使用函数内的局部变量.
+全局变量是在函数外部声明的 Go语言函数内可以声明和全局变量相同名称的变量,在使用时,会优先使用函数内的局部变量.
 
 形式参数
 
-func test(形式参数)<返回值类型>{
-函数体
-}
+func test(形式参数)<返回值类型>{ 函数体 }
 
 ```go
 package main
@@ -134,35 +125,73 @@ func main() {
 func sum(a, b int) int {
 	fmt.Printf("sum函数中a=%d\n", a)
 	fmt.Printf("sum函数中b=%d\n", b)
-	return a+b
+	return a + b
 }
 
 ```
 
-###2022年04月17日22:43:14
+### 2022年04月17日22:43:14
+
 强制类型转换
 
 ```go
-	var f1 float64 = 2.333
-	f2 := int(f1)
-	fmt.Println(f1, f2)
-	//输出结果 2.333 2
+    var f1 float64 = 2.333
+f2 := int(f1)
+fmt.Println(f1, f2)
+//输出结果 2.333 2
 ```
 
 String转int
+
 ```go
+package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
 	string1 := "112233"
 	atoi, err := strconv.Atoi(string1)
 	fmt.Println(string1, atoi, err)
+}
 ```
 
 判断字符串是否以某个字符开头或结尾
+
 ```go
-    str := "hexo"
-	fmt.Println(strings.HasPrefix(str, "h"))//判断str是否以h字母开头
-	fmt.Println(strings.HasSuffix(str, "o"))//str是否以o字母结尾
-	输出结果 true true
+package main
+
+import (
+	"strings"
+	"fmt"
+)
+
+func main() {
+	str := "hexo"
+	fmt.Println(strings.HasPrefix(str, "h")) //判断str是否以h字母开头
+	fmt.Println(strings.HasSuffix(str, "o")) //str是否以o字母结尾
+	//输出结果 true true
+
+	//Containsany(s string,char string )s包含char中任意一个字符
+	println(strings.ContainsAny("abc", "ddd"))  //返回false
+	println(strings.ContainsAny("abc", "ddda")) //返回true
+
+	//Contains(s string,substring string) s中包含substring 返回true
+	println(strings.Contains("abc", "ab")) //返回true
+
+	//Compare方法比较字符串 如果相等返回0
+	println(strings.Compare("abc", "abc"))
+
+	//判断substr在s中的位置
+	println(strings.Index("abcde", "cd"))
+
+	//转换成大写字符
+	strings.ToUpper("abc")
+}
 ```
+
 
 
 

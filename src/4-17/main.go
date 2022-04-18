@@ -41,9 +41,17 @@ func main() {
 	//str := "hexo"
 	//fmt.Println(strings.HasPrefix(str, "h"))
 	//fmt.Println(strings.HasSuffix(str, "o"))
+
 	println(strings.ContainsAny("abc", "ddd"))
+	println(strings.ContainsAny("abc", "ddda"))
 	println(strings.Contains("abc", "ab"))
 
+	//Compare方法比较字符串 如果相等返回0
 	println(strings.Compare("abc", "abc"))
+
+	//判断substr在s中的位置
+	println(strings.Index("abcde", "cd"))
+
+	println(strings.ToUpper("abc"))
 
 }
